@@ -1,3 +1,4 @@
+
 # SafeOrizer
 A Xamarin.Forms app that encrypts media and documents in a SQLite db locally or in the cloud.
 
@@ -28,6 +29,6 @@ This app is the first Xamarin.Forms (XF) app that I want to bring in a state tha
 - Started testing [PCLCrypto](https://github.com/AArnott/PCLCrypto). I want to use it for the AES encryption and decryption but first I need to learn how to implement it correctly
 
 ## Screenshots (nothing here is final yet)
-![alt text](http://fs5.directupload.net/images/170104/w9g6lr72.png "UnlockPage")
+<a href="url"><img src="http://fs5.directupload.net/images/170104/w9g6lr72.png" align="left" width="500" ></a>
 
 
