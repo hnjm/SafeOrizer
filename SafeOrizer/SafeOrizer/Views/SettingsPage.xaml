@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeOrizer.Views.SettingsPage">
+
+    <StackLayout Orientation="Vertical">
+        <Label Text="Database info"/>
+
+        <Label x:Name="ItemsCountLabel" Text="Items Count:" />
+
+        <Button x:Name="ClearDbButton" Text="Delete db content"/>
+
+    </StackLayout>
+   
+    
+</ContentPage>

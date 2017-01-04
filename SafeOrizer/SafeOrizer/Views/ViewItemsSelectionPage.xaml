@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeOrizer.Views.ViewItemsSelectionPage">
+  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition />
+    </Grid.RowDefinitions>
+
+    <Button x:Name="ViewGalleryButton"  Text="Gallery" />
+    <Button x:Name="ViewFilesButton" Text="Files" Grid.Row="1"/>
+  </Grid>
+</ContentPage>

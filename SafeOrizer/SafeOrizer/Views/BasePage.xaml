@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeOrizer.Views.BasePage"
+             Title="SafeOrizer">
+  <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
+    <Label Text="MainView" VerticalOptions="Center" HorizontalOptions="Center" />
+    <Button x:Name="AddButton" Text="Add" Margin="50" />
+    <Button x:Name="ViewButton" Text="View" Margin="50" />
+    <Button x:Name="SettingsButton" Text="Settings" Margin="50"/>
+  
+  </StackLayout>
+  
+
+</ContentPage>

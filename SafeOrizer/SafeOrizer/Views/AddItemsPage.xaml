@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SafeOrizer.Views.AddItemsPage"
+             Title="SafeOrizer">
+    
+  <Label Text="AddItemsView" VerticalOptions="Center" HorizontalOptions="Center" />
+
+  <Grid VerticalOptions="Center" HorizontalOptions="Center">
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition />
+      <RowDefinition />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition />
+        <ColumnDefinition />
+    </Grid.ColumnDefinitions>
+      
+    <Button x:Name="AddImagesButton" Text="Add Images"  />
+    <Button x:Name="AddVideosButton" Text="Add Videos" Grid.Column="1"/>
+    <Button x:Name="AddCameraButton" Text="Take Photo" Grid.Row="1" />
+    <Button x:Name="AddFilesButton" Text="Add Files" Grid.Row="1" Grid.Column="1" />
+  </Grid>
+ 
+  
+  
+</ContentPage>
