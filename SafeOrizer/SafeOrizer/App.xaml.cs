@@ -3,9 +3,6 @@ using SafeOrizer.Interfaces;
 using SafeOrizer.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Microsoft.Azure.Mobile;
-using Microsoft.Azure.Mobile.Analytics;
-using Microsoft.Azure.Mobile.Crashes;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace SafeOrizer
@@ -24,8 +21,7 @@ namespace SafeOrizer
                 BarBackgroundColor = Color.FromRgb(244, 67, 54),
                 BarTextColor = Color.White
             };
-
-            MobileCenter.Start(typeof(Analytics), typeof(Crashes));
+            
 
             this.MainPage = nav;
         }

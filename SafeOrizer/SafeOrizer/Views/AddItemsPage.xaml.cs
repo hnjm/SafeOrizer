@@ -138,10 +138,6 @@ namespace SafeOrizer.Views
             await DisplayAlert("Success!", "Media successfully added!", "Hell yeah!");
         }
 
-        private async void Image_FinishAsync(object sender, CachedImageEvents.FinishEventArgs e)
-        {
-            
-        }
 
     }
 }

@@ -3,18 +3,18 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using HockeyApp.Android;
-using HockeyApp.Android.Metrics;
+//using HockeyApp.Android.Metrics;
 using Plugin.Permissions;
-using Microsoft.Azure.Mobile;
+//using Microsoft.Azure.Mobile;
 using FFImageLoading.Forms.Droid;
 
 namespace SafeOrizer.Droid
 {
-    [Activity(Label = "SafeOrizer", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+    [Activity(Label = "SafeOrizer.Droid", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    public class MainActivity : Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        string HockeyAppId = "580a5ae3aa004dfca7d5506dfc014be4";
-        string VSMobileCenterAppId = "1752819c-152a-4a2e-b146-38e3e7d16854";
+        const string HockeyAppId = "13286fc90aa24b5d865cf9ea067ced6f";
+        const string VSMobileCenterAppId = "1752819c-152a-4a2e-b146-38e3e7d16854";
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -24,15 +24,15 @@ namespace SafeOrizer.Droid
 
             base.OnCreate(bundle);
 
-            global::Xamarin.Forms.Forms.Init(this, bundle);
-
             // Hockeyapp integration
-            CheckForUpdates();
-            CrashManager.Register(this, this.HockeyAppId);
-            MetricsManager.Register(this.Application, this.HockeyAppId);
+            //CheckForUpdates();
+            CrashManager.Register(this, HockeyAppId);
+            //MetricsManager.Register(this.Application, this.HockeyAppId);
 
             // Mobile Center integration
-            MobileCenter.Configure(this.VSMobileCenterAppId);
+            //MobileCenter.Configure(this.VSMobileCenterAppId);
+
+            global::Xamarin.Forms.Forms.Init(this, bundle);
 
             CachedImageRenderer.Init();
 
@@ -41,7 +41,7 @@ namespace SafeOrizer.Droid
 
         private void CheckForUpdates() =>
             // Remove this for store builds!
-            UpdateManager.Register(this, this.HockeyAppId);
+            UpdateManager.Register(this, HockeyAppId);
 
         private void UnregisterManagers() => 
             UpdateManager.Unregister();
@@ -49,13 +49,13 @@ namespace SafeOrizer.Droid
         protected override void OnPause()
         {
             base.OnPause();
-            UnregisterManagers();
+            //UnregisterManagers();
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            UnregisterManagers();
+            //UnregisterManagers();
         }
 
 

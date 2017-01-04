@@ -1,8 +1,6 @@
 ﻿{
   "dependencies": {
     "HockeySDK.Xamarin": "4.1.0",
-    "Microsoft.Azure.Mobile.Analytics": "0.5.0",
-    "Microsoft.Azure.Mobile.Crashes": "0.5.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
     "PCLCrypto": "2.0.147",
     "Plugin.Permissions": "1.2.1",
@@ -10,9 +8,9 @@
     "Xam.Plugin.Media": "2.6.1",
     "Xam.Plugins.Settings": "2.5.1",
     "Xam.Plugins.Vibrate": "2.0.0",
-    "Xamarin.FFImageLoading": "2.2.5",
-    "Xamarin.FFImageLoading.Forms": "2.2.5",
-    "Xamarin.FFImageLoading.Transformations": "2.2.5",
+    "Xamarin.FFImageLoading": "2.2.6",
+    "Xamarin.FFImageLoading.Forms": "2.2.6",
+    "Xamarin.FFImageLoading.Transformations": "2.2.6",
     "Xamarin.Forms": "2.3.3.175"
   },
   "frameworks": {
