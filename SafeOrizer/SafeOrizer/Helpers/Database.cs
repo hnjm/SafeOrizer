@@ -19,6 +19,8 @@ namespace SafeOrizer.Helpers
             this.database.CreateTableAsync<EncryptedData>().Wait();
         }
 
+        public Task<int> GetItemCount() => this.database.Table<EncryptedData>().CountAsync();
+
         public Task<List<EncryptedData>> GetAllItemsAsync() => 
             this.database.Table<EncryptedData>().ToListAsync();
 

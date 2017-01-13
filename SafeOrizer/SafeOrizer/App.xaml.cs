@@ -4,7 +4,6 @@ using SafeOrizer.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace SafeOrizer
 {
     public partial class App : Application

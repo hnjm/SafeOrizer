@@ -4,6 +4,7 @@
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
     "PCLCrypto": "2.0.147",
     "Plugin.Permissions": "1.2.1",
+    "Refractored.MvvmHelpers": "1.2.0",
     "sqlite-net-pcl": "1.2.1",
     "Xam.Plugin.Media": "2.6.1",
     "Xam.Plugins.Settings": "2.5.1",
@@ -11,7 +12,7 @@
     "Xamarin.FFImageLoading": "2.2.6",
     "Xamarin.FFImageLoading.Forms": "2.2.6",
     "Xamarin.FFImageLoading.Transformations": "2.2.6",
-    "Xamarin.Forms": "2.3.3.175"
+    "Xamarin.Forms": "2.3.3.180"
   },
   "frameworks": {
     "uap10.0": {}
