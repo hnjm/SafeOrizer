@@ -22,6 +22,7 @@ This app is the first Xamarin.Forms (XF) app that I want to bring in a state tha
 
 
 ## Progress
+- I am learning MVVM now and will try to implement it here. As far as it makes sense I will also try to build upon the SOLID principles.
 - Started implementing [MediaPlugin](https://github.com/jamesmontemagno/MediaPlugin) for Camera and Gallery access
 - Started implementing [SQLite](https://github.com/praeclarum/sqlite-net) as data backendxamarin, following [this guide](https://developer.xamarin.com/guides/xamarin-forms/working-with/databases/)
 - Implemented [Vibration](https://github.com/jamesmontemagno/VibratePlugin) so that the device vibrates when you enter a wrong passcode
