@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SafeOrizer.Pages;
+using System;
 
 using Xamarin.Forms;
 
-namespace SafeOrizer.Views
+namespace SafeOrizer.Pages
 {
     public partial class ViewItemsSelectionPage : ContentPage
     {
@@ -20,9 +17,9 @@ namespace SafeOrizer.Views
         }
 
         private async void ViewGalleryButton_ClickedAsync(object sender, EventArgs e) => 
-            await this.Navigation.PushAsync(new ViewGalleryPage());
+            await this.Navigation.PushAsync(new GalleryPage());
 
         private async void ViewFilesButton_ClickedAsync(object sender, EventArgs e) => 
-            await this.Navigation.PushAsync(new ViewFilesPage());
+            await this.Navigation.PushAsync(new FileListPage());
     }
 }

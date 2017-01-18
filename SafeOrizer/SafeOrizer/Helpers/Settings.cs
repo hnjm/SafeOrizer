@@ -11,15 +11,9 @@ namespace SafeOrizer.Helpers
   /// </summary>
     public static class Settings
     {
-        private static ISettings AppSettings
-        {
-            get
-        {
-            return CrossSettings.Current;
-        }
-    }
+        private static ISettings AppSettings => CrossSettings.Current;
 
-    #region Setting Constants
+        #region Setting Constants
 
         private const string SettingsKey = "settings_key";
         private static readonly string SettingsDefault = string.Empty;
@@ -34,26 +28,14 @@ namespace SafeOrizer.Helpers
 
         public static string GeneralSettings
         {
-            get
-            {
-                return AppSettings.GetValueOrDefault<string>(SettingsKey, SettingsDefault);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue<string>(SettingsKey, value);
-            }
+            get => AppSettings.GetValueOrDefault(SettingsKey, SettingsDefault);
+            set => AppSettings.AddOrUpdateValue(SettingsKey, value);
         }
 
         public static string ConnectionString
         {
-            get
-            {
-                return AppSettings.GetValueOrDefault<string>(ConnectionStringKey, ConnectionStringDefault);
-            }
-            set
-            {
-                AppSettings.AddOrUpdateValue<string>(ConnectionStringKey, value);
-            }
+            get => AppSettings.GetValueOrDefault(ConnectionStringKey, ConnectionStringDefault);
+            set => AppSettings.AddOrUpdateValue(ConnectionStringKey, value);
         }
 
     }

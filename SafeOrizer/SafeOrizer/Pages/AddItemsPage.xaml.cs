@@ -1,15 +1,13 @@
-﻿using FFImageLoading.Forms;
-using SafeOrizer.Models;
+﻿using SafeOrizer.Models;
 using SafeOrizer.Helpers;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using System;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace SafeOrizer.Views
+namespace SafeOrizer.Pages
 {
     public partial class AddItemsPage : ContentPage
     {
@@ -121,7 +119,7 @@ namespace SafeOrizer.Views
 
         public async void SaveMediaAsync(MediaFile file, FileType type)
         {
-            var binaryData = await Converters.ReadFullyAsync(file.GetStream());
+            var binaryData = await ConvertHelpers.ReadFullyAsync(file.GetStream());
 
             var dataToSave = new EncryptedData
             {

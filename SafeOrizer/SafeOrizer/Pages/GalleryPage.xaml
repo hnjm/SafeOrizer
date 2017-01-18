@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="SafeOrizer.Pages.GalleryPage"
+	xmlns:controls="clr-namespace:SafeOrizer.Controls;assembly=SafeOrizer"
+    xmlns:vm="clr-namespace:SafeOrizer.ViewModels;assembly=SafeOrizer"
+	x:Name="ThePage">
+    <ContentPage.BindingContext>
+        <vm:GalleryViewModel x:Name="_viewModel" />
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="_addToolbarItem" Icon="add.png" Text="Add" Command="{Binding AddItemCommand}"/>
+        <ToolbarItem x:Name="_settingsToolbarItem" Icon="settings.png" Text="Settings" Command="{Binding SettingsCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition
+					Height="*">
+                </RowDefinition>
+                <RowDefinition
+					Height="128">
+                </RowDefinition>
+                <RowDefinition
+					Height="Auto">
+                </RowDefinition>
+            </Grid.RowDefinitions>
+            <Image
+				Source="{Binding PreviewImage}"
+				Grid.Row="0">
+            </Image>
+            <controls:ImageGallery
+				ItemsSource="{Binding Images}"
+				Grid.Row="1">
+                <controls:ImageGallery.ItemTemplate>
+                    <DataTemplate>
+                        <Image
+							Source="{Binding Source}"
+							Aspect="AspectFit">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+									Command="{Binding Path=BindingContext.PreviewImageCommand, Source={x:Reference ThePage}}"
+									CommandParameter="{Binding ImageId}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </DataTemplate>
+                </controls:ImageGallery.ItemTemplate>
+            </controls:ImageGallery>
+            <Button
+				Grid.Row="2"
+				Text="Photo"
+				Command="{Binding CameraCommand}">
+            </Button>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
+
+
+
+
+
+<!--OLD-->
+    <!--<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SafeOrizer.Views"
+             xmlns:vm="clr-namespace:SafeOrizer.ViewModels"
+             xmlns:conv="clr-namespace:SafeOrizer.Converters"
+             xmlns:ffil="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="SafeOrizer.Views.GalleryPage"
+             x:Name="TheGalleryPage"
+             Title="SafeOrizer">
+    --><!--<ContentPage.BindingContext>
+        <vm:GalleryViewModel x:Name="_viewModel" />
+    </ContentPage.BindingContext>--><!--
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="_addToolbarItem" Icon="add.png" Text="Add" Command="{Binding AddItemCommand}"/>
+        <ToolbarItem x:Name="_settingsToolbarItem" Icon="settings.png" Text="Settings" Command="{Binding SettingsCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition
+					Height="*">
+                </RowDefinition>
+                <RowDefinition
+					Height="128">
+                </RowDefinition>
+            </Grid.RowDefinitions>
+            <Image
+				Source="{Binding PreviewImage}"
+				Grid.Row="0">
+            </Image>
+            <local:ImageGallery
+				ItemsSource="{Binding Images}"
+				Grid.Row="1">
+                <local:ImageGallery.ItemTemplate>
+                    <DataTemplate>
+                        <Image
+							Source="{Binding Source}"
+							Aspect="AspectFit">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+									Command="{Binding Path=BindingContext.PreviewImageCommand, Source={x:Reference TheGalleryPage}}"
+									CommandParameter="{Binding ImageId}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </DataTemplate>
+                </local:ImageGallery.ItemTemplate>
+            </local:ImageGallery>
+        </Grid>
+
+        --><!--<OnPlatform.Android>
+            <local:FloatingActionButtonView x:Name="fab" ImageName="fab_add" ColorNormal="#547799" ColorPressed="#172839" ColorRipple="#2C3E50" AbsoluteLayout.LayoutBounds="1.0, 1.0, AutoSize, AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional" />
+        </OnPlatform.Android>--><!--
+        
+    </ContentPage.Content>
+</ContentPage>-->

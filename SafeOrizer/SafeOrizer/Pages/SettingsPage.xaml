@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModel="clr-namespace:SafeOrizer.ViewModels;assembly=SafeOrizer"
-             x:Class="SafeOrizer.Views.SettingsPage">
+             x:Class="SafeOrizer.Pages.SettingsPage"
+             Title="SafeOrizer">
 
     <ContentPage.BindingContext>
         <viewModel:SettingsViewModel />
@@ -17,7 +18,7 @@
                 <!--<TextCell Text="Items Count: " Detail="{Binding ItemCount}"/>-->
                 
 
-                <!--<Button x:Name="ClearDbButton"  Text="Delete db content" Command="{Binding ClearDbCommand}"/>-->
+                <Button x:Name="ClearDbButton"  Text="Delete db content" Command="{Binding ClearDbCommand}"/>
             </StackLayout.Children>           
         </StackLayout>
     </ContentPage.Content>

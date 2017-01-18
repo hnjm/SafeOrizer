@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace SafeOrizer.Views
+namespace SafeOrizer.Pages
 {
     public partial class SettingsPage : ContentPage
     {
@@ -8,6 +8,5 @@ namespace SafeOrizer.Views
         {
             InitializeComponent();
         }
-       
     }
 }

@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace SafeOrizer.Views
+namespace SafeOrizer.Pages
 {
     public partial class UnlockPage : ContentPage
     {
@@ -83,7 +83,7 @@ namespace SafeOrizer.Views
 
             if (this.Passphrase == "1337")
             {
-                await Navigation.PushAsync(new BasePage());
+                await App.Navigation.PushAsync(new GalleryPage());
             }
             else
             {

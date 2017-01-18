@@ -23,14 +23,11 @@ namespace SafeOrizer.ViewModels
             this.ClearDbCommand = new Command(async () => await ClearDbAsync());
         }
 
-
         public async Task ClearDbAsync()
         {
             await App.Database.DeleteAllItems();
 
             this.ItemCount = "0";
         }
-
-        public bool CanClearDb() => true;
     }
 }

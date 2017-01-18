@@ -1,6 +1,4 @@
-﻿using SafeOrizer.Views;
-using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace SafeOrizer
 {
