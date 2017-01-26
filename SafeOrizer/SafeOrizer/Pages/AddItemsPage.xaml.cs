@@ -121,7 +121,7 @@ namespace SafeOrizer.Pages
         {
             var binaryData = await ConvertHelpers.ReadFullyAsync(file.GetStream());
 
-            var dataToSave = new EncryptedData
+            var dataToSave = new Content
             {
                 Data = binaryData,
                 FileName = "Random file",

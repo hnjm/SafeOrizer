@@ -24,8 +24,6 @@ namespace SafeOrizer.Helpers
 
     #endregion
     
-        
-
         public static string GeneralSettings
         {
             get => AppSettings.GetValueOrDefault(SettingsKey, SettingsDefault);

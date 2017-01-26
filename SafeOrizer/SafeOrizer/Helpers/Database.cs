@@ -13,32 +13,32 @@ namespace SafeOrizer.Helpers
         public Database(string path)
         {
             this.database = new SQLiteAsyncConnection(path);
-            this.database.CreateTableAsync<EncryptedData>().Wait();
+            this.database.CreateTableAsync<Content>().Wait();
         }
 
-        public Task<int> GetItemCount() => this.database.Table<EncryptedData>().CountAsync();
+        public Task<int> GetItemCount() => this.database.Table<Content>().CountAsync();
 
-        public Task<List<EncryptedData>> GetAllItemsAsync() => 
-            this.database.Table<EncryptedData>().ToListAsync();
+        public Task<List<Content>> GetAllItemsAsync() => 
+            this.database.Table<Content>().ToListAsync();
 
-        public Task<List<EncryptedData>> GetImageItemsAsync() 
+        public Task<List<Content>> GetImageItemsAsync() 
         {
-            var query = this.database.Table<EncryptedData>().Where(d => d.FileType == FileType.Image);
+            var query = this.database.Table<Content>().Where(d => d.FileType == FileType.Image);
 
             return query.ToListAsync();
         }
 
-        public Task<List<EncryptedData>> GetVideoItemsAsync()
+        public Task<List<Content>> GetVideoItemsAsync()
         {
-            var query = this.database.Table<EncryptedData>().Where(d => d.FileType == FileType.Video);
+            var query = this.database.Table<Content>().Where(d => d.FileType == FileType.Video);
 
             return query.ToListAsync();
         }
 
-        public Task<EncryptedData> GetItemAsync(int id) => 
-            this.database.Table<EncryptedData>().Where(d => d.Id == id).FirstOrDefaultAsync();
+        public Task<Content> GetItemAsync(int id) => 
+            this.database.Table<Content>().Where(d => d.Id == id).FirstOrDefaultAsync();
 
-        public Task<int> SaveItemAsync(EncryptedData item)
+        public Task<int> SaveItemAsync(Content item)
         {
             if (item.Id != 0)
             {
@@ -51,7 +51,7 @@ namespace SafeOrizer.Helpers
             }
         }
 
-        public Task<int> DeleteItemAsync(EncryptedData item) => 
+        public Task<int> DeleteItemAsync(Content item) => 
             this.database.DeleteAsync(item);
 
         public Task<int> DeleteAllItems() =>

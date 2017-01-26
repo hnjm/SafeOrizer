@@ -1,6 +1,6 @@
 ﻿{
   "dependencies": {
-    "HockeySDK.Xamarin": "4.1.0",
+    "HockeySDK.Xamarin": "4.1.1",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
     "PCLCrypto": "2.0.147",
     "Plugin.Permissions": "1.2.1",

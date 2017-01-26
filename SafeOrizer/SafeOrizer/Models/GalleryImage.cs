@@ -8,7 +8,7 @@ namespace SafeOrizer.Models
     {
         public GalleryImage()
         {
-            ImageId = Guid.NewGuid();
+            this.ImageId = Guid.NewGuid();
         }
 
         public Guid ImageId

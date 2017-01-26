@@ -15,7 +15,8 @@ namespace SafeOrizer.ViewModels
 {
     public class GalleryViewModel : BaseViewModel
     {
-        ICommand _cameraCommand, _previewImageCommand = null;
+        //ICommand _cameraCommand, _previewImageCommand = null;
+        ICommand _previewImageCommand = null;
         ObservableCollection<GalleryImage> _images = new ObservableCollection<GalleryImage>();
         ImageSource _previewImage = null;
         Command _addItemCommand, _settingsCommand, _loadDataCommand;
@@ -49,16 +50,12 @@ namespace SafeOrizer.ViewModels
             var images = await App.Database.GetImageItemsAsync();
             //var videos = await App.Database.GetVideoItemsAsync();
 
-            var i = 0;
+            
             foreach (var image in images)
             {
-                // DEBUG for PERFORMANCE
-                if (i == 6) return;
-
                 var imageSource = ImageSource.FromStream(() => new MemoryStream(image.Data));
 
                 this._images.Add(new GalleryImage { Source = imageSource, OrgImage = image.Data });
-                i++;
             }
 
             return;
@@ -70,40 +67,40 @@ namespace SafeOrizer.ViewModels
             get => _previewImage; set => SetProperty(ref _previewImage, value);
         }
 
-        public ICommand CameraCommand => this._cameraCommand ?? 
-            new Command(async () => await ExecuteCameraCommand(), () => CanExecuteCameraCommand());
+        //public ICommand CameraCommand => this._cameraCommand ?? 
+        //    new Command(async () => await ExecuteCameraCommand(), () => CanExecuteCameraCommand());
 
-        public bool CanExecuteCameraCommand()
-        {
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
-            {
-                return false;
-            }
-            return true;
-        }
+        //public bool CanExecuteCameraCommand()
+        //{
+        //    if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+        //    {
+        //        return false;
+        //    }
+        //    return true;
+        //}
 
-        public async Task ExecuteCameraCommand()
-        {
-            var file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions { PhotoSize = PhotoSize.Small });
+        //public async Task ExecuteCameraCommand()
+        //{
+        //    var file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions { PhotoSize = PhotoSize.Small });
 
-            if (file == null)
-                return;
+        //    if (file == null)
+        //        return;
 
 
-            byte[] imageAsBytes = null;
-            using (var memoryStream = new MemoryStream())
-            {
-                file.GetStream().CopyTo(memoryStream);
-                file.Dispose();
-                imageAsBytes = memoryStream.ToArray();
-            }
+        //    byte[] imageAsBytes = null;
+        //    using (var memoryStream = new MemoryStream())
+        //    {
+        //        file.GetStream().CopyTo(memoryStream);
+        //        file.Dispose();
+        //        imageAsBytes = memoryStream.ToArray();
+        //    }
 
-            var imageSource = ImageSource.FromStream(() => new MemoryStream(imageAsBytes));
+        //    var imageSource = ImageSource.FromStream(() => new MemoryStream(imageAsBytes));
 
-            _images.Add(new GalleryImage { Source = imageSource, OrgImage = imageAsBytes });
+        //    _images.Add(new GalleryImage { Source = imageSource, OrgImage = imageAsBytes });
 
-            return;
-        }
+        //    return;
+        //}
 
         public ICommand PreviewImageCommand
         {

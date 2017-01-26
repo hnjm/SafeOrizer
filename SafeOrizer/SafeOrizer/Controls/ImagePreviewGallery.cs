@@ -6,92 +6,89 @@ using System.Linq;
 
 namespace SafeOrizer.Controls
 {
-    public class ImageGallery : ScrollView
+    public class ImagePreviewGallery : ScrollView
     {
         readonly StackLayout _imageStack;
 
-        public ImageGallery()
+        public ImagePreviewGallery()
         {
             this.Orientation = ScrollOrientation.Horizontal;
 
-            _imageStack = new StackLayout
+            this._imageStack = new StackLayout
             {
                 Orientation = StackOrientation.Horizontal
             };
 
-            this.Content = _imageStack;
+            this.Content = this._imageStack;
         }
 
-        public IList<View> Children
-        {
-            get
-            {
-                return _imageStack.Children;
-            }
-        }
+        public IList<View> Children => this._imageStack.Children;
 
+
+        //public static readonly BindableProperty ItemsSourceProperty =
+        //    BindableProperty.Create<ImagePreviewGallery, IList>(
+        //        view => view.ItemsSource,
+        //        default(IList),
+        //        BindingMode.TwoWay,
+        //        propertyChanging: (bindableObject, oldValue, newValue) => {
+        //            ((ImagePreviewGallery)bindableObject).ItemsSourceChanging();
+        //        },
+        //        propertyChanged: (bindableObject, oldValue, newValue) => {
+        //            ((ImagePreviewGallery)bindableObject).ItemsSourceChanged(bindableObject, oldValue, newValue);
+        //        }
+        //    );
 
         public static readonly BindableProperty ItemsSourceProperty =
-            BindableProperty.Create<ImageGallery, IList>(
-                view => view.ItemsSource,
+            BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(ImagePreviewGallery),
                 default(IList),
                 BindingMode.TwoWay,
-                propertyChanging: (bindableObject, oldValue, newValue) => {
-                    ((ImageGallery)bindableObject).ItemsSourceChanging();
+                propertyChanging: (bindableObject, oldValue, newValue) =>
+                {
+                    ((ImagePreviewGallery)bindableObject).ItemsSourceChanging();
                 },
-                propertyChanged: (bindableObject, oldValue, newValue) => {
-                    ((ImageGallery)bindableObject).ItemsSourceChanged(bindableObject, oldValue, newValue);
-                }
-            );
+                propertyChanged: (bindableObject, oldValue, newValue) =>
+                {
+                    ((ImagePreviewGallery)bindableObject).ItemsSourceChanged(bindableObject, (IList)oldValue, (IList)newValue);
+                });
 
         public IList ItemsSource
         {
-            get
-            {
-                return (IList)GetValue(ItemsSourceProperty);
-            }
-            set
-            {
-
-                SetValue(ItemsSourceProperty, value);
-            }
+            get => (IList)GetValue(ItemsSourceProperty);
+            set => SetValue(ItemsSourceProperty, value);
         }
 
         void ItemsSourceChanging()
         {
-            if (ItemsSource == null)
+            if (this.ItemsSource == null)
                 return;
         }
 
         void ItemsSourceChanged(BindableObject bindable, IList oldValue, IList newValue)
         {
-            if (ItemsSource == null)
+            if (this.ItemsSource == null)
                 return;
 
-            var notifyCollection = newValue as INotifyCollectionChanged;
-            if (notifyCollection != null)
+            if (newValue is INotifyCollectionChanged notifyCollection)
             {
-                notifyCollection.CollectionChanged += (sender, args) => {
+                notifyCollection.CollectionChanged += (sender, args) =>
+                {
                     if (args.NewItems != null)
                     {
                         foreach (var newItem in args.NewItems)
                         {
-
-                            var view = (View)ItemTemplate.CreateContent();
-                            var bindableObject = view as BindableObject;
-                            if (bindableObject != null)
+                            var view = (View)this.ItemTemplate.CreateContent();
+                            if (view is BindableObject bindableObject)
                                 bindableObject.BindingContext = newItem;
-                            _imageStack.Children.Add(view);
+                            this._imageStack.Children.Add(view);
                         }
                     }
                     if (args.OldItems != null)
                     {
                         // not supported
-                        _imageStack.Children.RemoveAt(args.OldStartingIndex);
+                        this._imageStack.Children.RemoveAt(args.OldStartingIndex);
                     }
                 };
             }
-
         }
 
         public DataTemplate ItemTemplate
@@ -100,66 +97,73 @@ namespace SafeOrizer.Controls
             set;
         }
 
+        //public static readonly BindableProperty SelectedItemProperty =
+        //    BindableProperty.Create<ImagePreviewGallery, object>(
+        //        view => view.SelectedItem,
+        //        null,
+        //        BindingMode.TwoWay,
+        //        propertyChanged: (bindable, oldValue, newValue) => {
+        //            ((ImagePreviewGallery)bindable).UpdateSelectedIndex();
+        //        }
+        //    );
+
         public static readonly BindableProperty SelectedItemProperty =
-            BindableProperty.Create<ImageGallery, object>(
-                view => view.SelectedItem,
+            BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(ImagePreviewGallery),
                 null,
                 BindingMode.TwoWay,
                 propertyChanged: (bindable, oldValue, newValue) => {
-                    ((ImageGallery)bindable).UpdateSelectedIndex();
+                    ((ImagePreviewGallery)bindable).UpdateSelectedIndex();
                 }
             );
 
         public object SelectedItem
         {
-            get
-            {
-                return GetValue(SelectedItemProperty);
-            }
-            set
-            {
-                SetValue(SelectedItemProperty, value);
-            }
+            get => GetValue(SelectedItemProperty);
+            set => SetValue(SelectedItemProperty, value);
         }
 
         void UpdateSelectedIndex()
         {
-            if (SelectedItem == BindingContext)
+            if (this.SelectedItem == this.BindingContext)
                 return;
 
-            SelectedIndex = Children
+            this.SelectedIndex = this.Children
                 .Select(c => c.BindingContext)
                 .ToList()
-                .IndexOf(SelectedItem);
+                .IndexOf(this.SelectedItem);
 
         }
 
+        //public static readonly BindableProperty SelectedIndexProperty =
+        //    BindableProperty.Create<ImagePreviewGallery, int>(
+        //        carousel => carousel.SelectedIndex,
+        //        0,
+        //        BindingMode.TwoWay,
+        //        propertyChanged: (bindable, oldValue, newValue) => {
+        //            ((ImagePreviewGallery)bindable).UpdateSelectedItem();
+        //        }
+        //    );
+
         public static readonly BindableProperty SelectedIndexProperty =
-            BindableProperty.Create<ImageGallery, int>(
-                carousel => carousel.SelectedIndex,
+            BindableProperty.Create(
+                nameof(SelectedIndex),
+                typeof(int),
+                typeof(ImagePreviewGallery),
                 0,
                 BindingMode.TwoWay,
-                propertyChanged: (bindable, oldValue, newValue) => {
-                    ((ImageGallery)bindable).UpdateSelectedItem();
-                }
-            );
+                propertyChanged: (bindable, oldValue, newValue) =>
+                {
+                    ((ImagePreviewGallery)bindable).UpdateSelectedItem();
+                });
 
         public int SelectedIndex
         {
-            get
-            {
-                return (int)GetValue(SelectedIndexProperty);
-            }
-            set
-            {
-                SetValue(SelectedIndexProperty, value);
-            }
+            get => (int)GetValue(SelectedIndexProperty);
+            set => SetValue(SelectedIndexProperty, value);
         }
 
-        void UpdateSelectedItem()
-        {
-            SelectedItem = SelectedIndex > -1 ? Children[SelectedIndex].BindingContext : null;
-        }
+        void UpdateSelectedItem() => this.SelectedItem = this.SelectedIndex > -1 ?
+            this.Children[this.SelectedIndex].BindingContext : null;
     }
 }
 

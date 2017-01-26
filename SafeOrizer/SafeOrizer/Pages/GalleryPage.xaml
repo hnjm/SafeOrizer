@@ -2,10 +2,12 @@
 <ContentPage
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	x:Class="SafeOrizer.Pages.GalleryPage"
 	xmlns:controls="clr-namespace:SafeOrizer.Controls;assembly=SafeOrizer"
     xmlns:vm="clr-namespace:SafeOrizer.ViewModels;assembly=SafeOrizer"
-	x:Name="ThePage">
+    xmlns:ffil="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    x:Class="SafeOrizer.Pages.GalleryPage"
+	x:Name="ThePage"
+    Title="SafeOrizer">
     <ContentPage.BindingContext>
         <vm:GalleryViewModel x:Name="_viewModel" />
     </ContentPage.BindingContext>
@@ -17,42 +19,51 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
                 <RowDefinition
 					Height="*">
                 </RowDefinition>
                 <RowDefinition
-					Height="128">
+					Height="96">
                 </RowDefinition>
-                <RowDefinition
+                <RowDefinition Height="10" />
+                <!--<RowDefinition
 					Height="Auto">
-                </RowDefinition>
+                </RowDefinition>-->
             </Grid.RowDefinitions>
-            <Image
+            <ffil:CachedImage
+                DownsampleToViewSize="True"
 				Source="{Binding PreviewImage}"
-				Grid.Row="0">
-            </Image>
-            <controls:ImageGallery
+                Aspect="AspectFit"
+                FadeAnimationEnabled="True"
+                HorizontalOptions="FillAndExpand"
+				Grid.Row="1"
+                VerticalOptions="Fill">
+            </ffil:CachedImage>
+            <controls:ImagePreviewGallery
+                Margin="0"
 				ItemsSource="{Binding Images}"
-				Grid.Row="1">
-                <controls:ImageGallery.ItemTemplate>
+				Grid.Row="2">
+                <controls:ImagePreviewGallery.ItemTemplate>
                     <DataTemplate>
-                        <Image
-							Source="{Binding Source}"
-							Aspect="AspectFit">
+                        <ffil:CachedImage
+                            Source="{Binding Source}"
+							Aspect="AspectFit"
+                            DownsampleToViewSize="True">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer
 									Command="{Binding Path=BindingContext.PreviewImageCommand, Source={x:Reference ThePage}}"
 									CommandParameter="{Binding ImageId}" />
                             </Image.GestureRecognizers>
-                        </Image>
+                        </ffil:CachedImage>
                     </DataTemplate>
-                </controls:ImageGallery.ItemTemplate>
-            </controls:ImageGallery>
-            <Button
+                </controls:ImagePreviewGallery.ItemTemplate>
+            </controls:ImagePreviewGallery>
+            <!--<Button
 				Grid.Row="2"
 				Text="Photo"
 				Command="{Binding CameraCommand}">
-            </Button>
+            </Button>-->
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -92,35 +92,6 @@ namespace SafeOrizer.Pages
             }
         }
 
-        // https://github.com/AArnott/PCLCrypto/wiki/Crypto-Recipes#derive-a-symmetric-key-from-a-password
-        private void TestEncryption()
-        {
-            string password = this.Passphrase;
-            byte[] salt = new byte[16];
-            NetFxCrypto.RandomNumberGenerator.GetBytes(salt); // Generate salt one time and save on the device
-            int iterations = 5000; // higher makes brute force attacks more expensive
-            int keyLengthInBytes = 256; // kreate a 256 bit key, maximum for AES
-            byte[] key = NetFxCrypto.DeriveBytes.GetBytes(password, salt, iterations, keyLengthInBytes);
-
-
-
-
-        }
-
-        //// Create a buffer with strong random data
-        //byte[] cryptoRandomBuffer = new byte[15];
-        //NetFxCrypto.RandomNumberGenerator.GetBytes(cryptoRandomBuffer);
-
-        //// Generate a random number
-        //uint randomFrom0To15 = WinRTCrypto.CryptographicBuffer.GenerateRandomNumber() % 16;
-
-        //// Generate a HMAC for the data
-        //        byte[] keyMaterial;
-        //        byte[] data;
-        //        var algorithm = WinRTCrypto.MacAlgorithmProvider.OpenAlgorithm(MacAlgorithm.HmacSha1);
-        //        CryptographicHash hasher = algorithm.CreateHash(keyMaterial);
-        //        hasher.Append(data);
-        //        byte[] mac = hasher.GetValueAndReset();
-        //        string macBase64 = Convert.ToBase64String(mac);
+      
     }
 }
