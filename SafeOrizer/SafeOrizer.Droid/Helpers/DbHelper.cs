@@ -6,7 +6,6 @@ using System.IO;
 [assembly: Dependency(typeof(DbHelper))]
 namespace SafeOrizer.Droid.Helpers
 {
-
     public class DbHelper : IDbHelper
     {
         public string GetLocalFilePath(string filename)

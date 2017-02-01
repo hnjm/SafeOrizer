@@ -7,6 +7,7 @@ using HockeyApp.Android;
 using Plugin.Permissions;
 //using Microsoft.Azure.Mobile;
 using FFImageLoading.Forms.Droid;
+using SafeOrizer.Droid.Helpers;
 
 namespace SafeOrizer.Droid
 {
@@ -23,6 +24,8 @@ namespace SafeOrizer.Droid
             
 
             base.OnCreate(bundle);
+
+            System.Diagnostics.Debug.Listeners.Add(new LogTraceListener());
 
             // Hockeyapp integration
             //CheckForUpdates();
@@ -59,10 +62,8 @@ namespace SafeOrizer.Droid
         }
 
 
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
-        {
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults) => 
             PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
     }
 }
 

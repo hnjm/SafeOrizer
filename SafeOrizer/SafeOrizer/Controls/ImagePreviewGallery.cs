@@ -1,45 +1,45 @@
-﻿using Xamarin.Forms;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Collections.Generic;
-using System.Linq;
+﻿// From: https://github.com/rasmuschristensen/XamarinFormsImageGallery
 
 namespace SafeOrizer.Controls
 {
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Collections.Specialized;
+    using System.Linq;
+    using Xamarin.Forms;
+
+    /// <summary>
+    /// A horizontal collection of Views that allows Binding and Selection of Items
+    /// </summary>
     public class ImagePreviewGallery : ScrollView
     {
-        readonly StackLayout _imageStack;
+        private readonly StackLayout imageStack;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ImagePreviewGallery"/> class.
+        /// </summary>
         public ImagePreviewGallery()
         {
             this.Orientation = ScrollOrientation.Horizontal;
 
-            this._imageStack = new StackLayout
+            this.imageStack = new StackLayout
             {
                 Orientation = StackOrientation.Horizontal
             };
 
-            this.Content = this._imageStack;
+            this.Content = this.imageStack;
         }
 
-        public IList<View> Children => this._imageStack.Children;
-
-
-        //public static readonly BindableProperty ItemsSourceProperty =
-        //    BindableProperty.Create<ImagePreviewGallery, IList>(
-        //        view => view.ItemsSource,
-        //        default(IList),
-        //        BindingMode.TwoWay,
-        //        propertyChanging: (bindableObject, oldValue, newValue) => {
-        //            ((ImagePreviewGallery)bindableObject).ItemsSourceChanging();
-        //        },
-        //        propertyChanged: (bindableObject, oldValue, newValue) => {
-        //            ((ImagePreviewGallery)bindableObject).ItemsSourceChanged(bindableObject, oldValue, newValue);
-        //        }
-        //    );
+        /// <summary>
+        /// Gets the bindable Children of the View
+        /// </summary>
+        public IList<View> Children => this.imageStack.Children;
 
         public static readonly BindableProperty ItemsSourceProperty =
-            BindableProperty.Create(nameof(ItemsSource), typeof(IList), typeof(ImagePreviewGallery),
+            BindableProperty.Create(
+                nameof(ItemsSource),
+                typeof(IList),
+                typeof(ImagePreviewGallery),
                 default(IList),
                 BindingMode.TwoWay,
                 propertyChanging: (bindableObject, oldValue, newValue) =>
@@ -79,13 +79,13 @@ namespace SafeOrizer.Controls
                             var view = (View)this.ItemTemplate.CreateContent();
                             if (view is BindableObject bindableObject)
                                 bindableObject.BindingContext = newItem;
-                            this._imageStack.Children.Add(view);
+                            this.imageStack.Children.Add(view);
                         }
                     }
                     if (args.OldItems != null)
                     {
                         // not supported
-                        this._imageStack.Children.RemoveAt(args.OldStartingIndex);
+                        this.imageStack.Children.RemoveAt(args.OldStartingIndex);
                     }
                 };
             }
@@ -97,52 +97,36 @@ namespace SafeOrizer.Controls
             set;
         }
 
-        //public static readonly BindableProperty SelectedItemProperty =
-        //    BindableProperty.Create<ImagePreviewGallery, object>(
-        //        view => view.SelectedItem,
-        //        null,
-        //        BindingMode.TwoWay,
-        //        propertyChanged: (bindable, oldValue, newValue) => {
-        //            ((ImagePreviewGallery)bindable).UpdateSelectedIndex();
-        //        }
-        //    );
-
         public static readonly BindableProperty SelectedItemProperty =
-            BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(ImagePreviewGallery),
+            BindableProperty.Create(
+                nameof(SelectedItem),
+                typeof(object),
+                typeof(ImagePreviewGallery),
                 null,
                 BindingMode.TwoWay,
-                propertyChanged: (bindable, oldValue, newValue) => {
+                propertyChanged: (bindable, oldValue, newValue) =>
+                {
                     ((ImagePreviewGallery)bindable).UpdateSelectedIndex();
-                }
-            );
+                });
 
         public object SelectedItem
         {
-            get => GetValue(SelectedItemProperty);
-            set => SetValue(SelectedItemProperty, value);
+            get => this.GetValue(SelectedItemProperty);
+            set => this.SetValue(SelectedItemProperty, value);
         }
 
         void UpdateSelectedIndex()
         {
             if (this.SelectedItem == this.BindingContext)
+            {
                 return;
+            }
 
             this.SelectedIndex = this.Children
                 .Select(c => c.BindingContext)
                 .ToList()
                 .IndexOf(this.SelectedItem);
-
         }
-
-        //public static readonly BindableProperty SelectedIndexProperty =
-        //    BindableProperty.Create<ImagePreviewGallery, int>(
-        //        carousel => carousel.SelectedIndex,
-        //        0,
-        //        BindingMode.TwoWay,
-        //        propertyChanged: (bindable, oldValue, newValue) => {
-        //            ((ImagePreviewGallery)bindable).UpdateSelectedItem();
-        //        }
-        //    );
 
         public static readonly BindableProperty SelectedIndexProperty =
             BindableProperty.Create(
@@ -158,11 +142,11 @@ namespace SafeOrizer.Controls
 
         public int SelectedIndex
         {
-            get => (int)GetValue(SelectedIndexProperty);
-            set => SetValue(SelectedIndexProperty, value);
+            get => (int)this.GetValue(SelectedIndexProperty);
+            set => this.SetValue(SelectedIndexProperty, value);
         }
 
-        void UpdateSelectedItem() => this.SelectedItem = this.SelectedIndex > -1 ?
+        private void UpdateSelectedItem() => this.SelectedItem = this.SelectedIndex > -1 ?
             this.Children[this.SelectedIndex].BindingContext : null;
     }
 }

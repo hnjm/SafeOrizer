@@ -5,7 +5,7 @@
 	xmlns:controls="clr-namespace:SafeOrizer.Controls;assembly=SafeOrizer"
     xmlns:vm="clr-namespace:SafeOrizer.ViewModels;assembly=SafeOrizer"
     xmlns:ffil="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-    x:Class="SafeOrizer.Pages.GalleryPage"
+    x:Class="SafeOrizer.Pages.PreviewGalleryPage"
 	x:Name="ThePage"
     Title="SafeOrizer">
     <ContentPage.BindingContext>
@@ -31,31 +31,28 @@
 					Height="Auto">
                 </RowDefinition>-->
             </Grid.RowDefinitions>
-            <ffil:CachedImage
-                DownsampleToViewSize="True"
+            <Image
 				Source="{Binding PreviewImage}"
                 Aspect="AspectFit"
-                FadeAnimationEnabled="True"
                 HorizontalOptions="FillAndExpand"
 				Grid.Row="1"
                 VerticalOptions="Fill">
-            </ffil:CachedImage>
+            </Image>
             <controls:ImagePreviewGallery
                 Margin="0"
 				ItemsSource="{Binding Images}"
 				Grid.Row="2">
                 <controls:ImagePreviewGallery.ItemTemplate>
                     <DataTemplate>
-                        <ffil:CachedImage
+                        <Image
                             Source="{Binding Source}"
-							Aspect="AspectFit"
-                            DownsampleToViewSize="True">
+							Aspect="AspectFit">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer
 									Command="{Binding Path=BindingContext.PreviewImageCommand, Source={x:Reference ThePage}}"
 									CommandParameter="{Binding ImageId}" />
                             </Image.GestureRecognizers>
-                        </ffil:CachedImage>
+                        </Image>
                     </DataTemplate>
                 </controls:ImagePreviewGallery.ItemTemplate>
             </controls:ImagePreviewGallery>

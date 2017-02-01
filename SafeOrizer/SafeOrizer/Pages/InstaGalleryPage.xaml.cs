@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+﻿// <copyright file="InstaGalleryPage.xaml.cs" company="Christoph Nienaber, https://github.com/zuckerthoben">
+// Copyright (c) Christoph Nienaber, https://github.com/zuckerthoben. All rights reserved.
+// </copyright>
 
 namespace SafeOrizer.Pages
 {
+    using Xamarin.Forms;
+
     public partial class InstaGalleryPage : ContentPage
     {
         public InstaGalleryPage()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }

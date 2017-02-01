@@ -11,14 +11,13 @@ namespace SafeOrizer.Helpers
         readonly SQLiteAsyncConnection database;
 
         public Database(string path)
-        {
-            this.database = new SQLiteAsyncConnection(path);
+        {            this.database = new SQLiteAsyncConnection(path);
             this.database.CreateTableAsync<Content>().Wait();
         }
 
         public Task<int> GetItemCount() => this.database.Table<Content>().CountAsync();
 
-        public Task<List<Content>> GetAllItemsAsync() => 
+        public Task<List<Content>> GetAllItemsAsync() =>
             this.database.Table<Content>().ToListAsync();
 
         public Task<List<Content>> GetImageItemsAsync() 
@@ -42,11 +41,11 @@ namespace SafeOrizer.Helpers
         {
             if (item.Id != 0)
             {
-                Debug.WriteLine($"Saving item {item.FileName}");
+                Debug.WriteLine($">>>>> Saving item {item.FileName}");
                 return this.database.UpdateAsync(item);
             } else
             {
-                Debug.WriteLine($"Inserting item {item.FileName}");
+                Debug.WriteLine($">>>>> Inserting item {item.FileName}");
                 return this.database.InsertAsync(item);
             }
         }

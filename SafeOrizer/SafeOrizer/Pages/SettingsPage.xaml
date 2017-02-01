@@ -8,7 +8,7 @@
     <ContentPage.BindingContext>
         <viewModel:SettingsViewModel />
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
             <StackLayout.Children>
@@ -16,13 +16,10 @@
 
                 <Label Text="{Binding ItemCount}"/>
                 <!--<TextCell Text="Items Count: " Detail="{Binding ItemCount}"/>-->
-                
+
 
                 <Button x:Name="ClearDbButton"  Text="Delete db content" Command="{Binding ClearDbCommand}"/>
-            </StackLayout.Children>           
+            </StackLayout.Children>
         </StackLayout>
     </ContentPage.Content>
-   
-   
-    
 </ContentPage>

@@ -1,8 +1,8 @@
-﻿using System;
-using Xamarin.Forms;
-
-namespace SafeOrizer.Controls
+﻿namespace SafeOrizer.Controls
 {
+    using System;
+    using Xamarin.Forms;
+
     public enum FloatingActionButtonSize
     {
         Normal,

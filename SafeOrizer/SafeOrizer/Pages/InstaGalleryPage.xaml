@@ -1,5 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SafeOrizer.Pages.InstaGalleryPage">
+             xmlns:vm="clr-namespace:SafeOrizer.ViewModels;assembly=SafeOrizer"
+             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+             x:Class="SafeOrizer.Pages.InstaGalleryPage"
+             Title="SafeOrizer">
+    <ContentPage.BindingContext>
+        <vm:GalleryViewModel x:Name="_viewModel" />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <!--<flv:FlowListView FlowColumnCount="3" SeparatorVisibility="None" HasUnevenRows="false"
+                          FlowItemTappedCommand="{Binding ItemTappedCommand}" FlowItemTapped="{Binding TappedItem}"
+                          FlowItemsSource="{Binding Items}">
+            <flv:FlowListView.FlowColumnTemplate>
+                
+            </flv:FlowListView.FlowColumnTemplate>
+            
+            
+        </flv:FlowListView>-->
+    </ContentPage.Content>
 </ContentPage>
